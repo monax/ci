@@ -66,7 +66,7 @@ ENV PATH "$PATH:/google-cloud-sdk/bin"
 RUN gcloud config set core/disable_usage_reporting true && \
     gcloud config set component_manager/disable_update_check true
 
-FROM golang:1.14.0-alpine3.11 as gopher
+FROM golang:1.14.2-alpine3.11 as gopher
 
 # MAIN IMAGE
 # ==========
