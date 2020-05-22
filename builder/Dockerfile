@@ -18,8 +18,6 @@ RUN apk add --update --no-cache \
   libffi-dev \
   libpng-dev \
   make \
-  nodejs \
-  nodejs-npm \
   openssh-client \
   parallel \
   python \
@@ -33,7 +31,7 @@ RUN apk add --update --no-cache \
   util-linux \
   openssl-dev \
   postgresql-client \
-  yarn
+  rsync
 
 RUN pip3 install pyyaml
 RUN pip install docker-compose
