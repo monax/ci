@@ -1,6 +1,6 @@
 IMAGE_REPO=docker.pkg.github.com/monax/ci
 ### Versions for each image
-builder_version=$(git describe --tags)
+builder_version=$(shell git describe --tags)
 
 export BUILD_DATE:=$(shell date --rfc-3339=seconds)
 
