@@ -15,6 +15,5 @@ builder: builder.img builder.push
 	docker build --build-arg VERSION=$(VERSION) --build-arg BUILD_DATE="$(BUILD_DATE)" --tag $(IMAGE_REPO)/$*:$(VERSION) $*
 
 # Push image built above
-%.push: VERSION=$($*_version)
 %.push: %/Dockerfile
 	docker push $(IMAGE_REPO)/$*:$(VERSION)
