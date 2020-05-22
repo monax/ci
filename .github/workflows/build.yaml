@@ -1,12 +1,18 @@
 on:
   push:
-    branches:
-      - master
+    tags:
+      - 'v*'
 
 jobs:
   builder-image:
     runs-on: ubuntu-latest
     steps:
+      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: '287.0.0'
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
+      - run: gcloud auth configure-docker
       - uses: actions/checkout@v2
       - run: git fetch --prune --unshallow
       - run: make builder
