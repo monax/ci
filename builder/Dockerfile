@@ -1,6 +1,6 @@
 # BUILD IMAGES
 # ============
-FROM node:13-alpine3.10 as basics
+FROM node:13-alpine3.11 as basics
 
 RUN apk add --update --no-cache \
   autoconf \
