@@ -22,8 +22,7 @@ RUN apk add --update --no-cache \
   parallel \
   python3 \
   python3-dev \
-  py-crcmod \
-  py-pip \
+  py3-crcmod \
   py3-pip \
   tar \
   unzip \
