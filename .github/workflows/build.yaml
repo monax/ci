@@ -7,12 +7,12 @@ jobs:
   builder-image:
     runs-on: ubuntu-latest
     steps:
-      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
-        with:
-          version: '287.0.0'
-          service_account_key: ${{ secrets.GCP_SA_KEY }}
-          export_default_credentials: true
-      - run: gcloud auth configure-docker
+      #- uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+      #  with:
+      #    version: '287.0.0'
+      #    service_account_key: ${{ secrets.GCP_SA_KEY }}
+      #    export_default_credentials: true
+      #- run: gcloud auth configure-docker
       - run: echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
       - uses: actions/checkout@v2
       - run: git fetch --prune --unshallow
