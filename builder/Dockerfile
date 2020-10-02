@@ -20,12 +20,11 @@ RUN apk add --update --no-cache \
   make \
   openssh-client \
   parallel \
-  python \
   python3 \
+  python3-dev \
   py-crcmod \
   py-pip \
   py3-pip \
-  python-dev \
   tar \
   unzip \
   util-linux \
@@ -39,7 +38,7 @@ RUN npm install -g typescript
 
 FROM basics as tooling
 
-ENV CLOUD_SDK_VERSION 225.0.0
+ENV CLOUD_SDK_VERSION 312.0.0
 ENV HELM_VERSION 3.0.2
 ENV KUBECTL_VERSION 1.19.0
 ENV INSTALL_BASE /usr/local/bin
@@ -55,6 +54,7 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/v${KUBECT
   mv ./kubectl $INSTALL_BASE/kubectl
 
 ## Install Google Cloud SDK
+ENV CLOUDSDK_PYTHON python3
 RUN curl -LO https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz && \
   tar -xzf google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz && \
   rm google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz && \
