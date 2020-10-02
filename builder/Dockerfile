@@ -1,6 +1,6 @@
 # BUILD IMAGES
 # ============
-FROM node:13-alpine3.11 as basics
+FROM node:14-alpine3.12 as basics
 
 RUN apk add --update --no-cache \
   autoconf \
@@ -40,8 +40,8 @@ RUN npm install -g typescript
 FROM basics as tooling
 
 ENV CLOUD_SDK_VERSION 225.0.0
-ENV HELM_VERSION 3.0.0
-ENV KUBECTL_VERSION 1.12.0
+ENV HELM_VERSION 3.0.2
+ENV KUBECTL_VERSION 1.19.0
 ENV INSTALL_BASE /usr/local/bin
 
 ## Install Helm Client
@@ -64,7 +64,7 @@ ENV PATH "$PATH:/google-cloud-sdk/bin"
 RUN gcloud config set core/disable_usage_reporting true && \
     gcloud config set component_manager/disable_update_check true
 
-FROM golang:1.14.2-alpine3.11 as gopher
+FROM golang:1.15.2-alpine3.12 as gopher
 
 # MAIN IMAGE
 # ==========
@@ -92,5 +92,4 @@ LABEL org.opencontainers.image.created=$BUILD_DATE
 LABEL org.opencontainers.image.authors="ops@monax.io"
 LABEL org.opencontainers.image.description="Monax Infrastructure Builder Image"
 LABEL org.opencontainers.image.vendor="Monax"
-
 
