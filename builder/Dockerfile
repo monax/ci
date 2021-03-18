@@ -37,9 +37,9 @@ RUN npm install -g typescript
 
 FROM basics as tooling
 
-ENV CLOUD_SDK_VERSION 312.0.0
-ENV HELM_VERSION 3.0.2
-ENV KUBECTL_VERSION 1.19.0
+ENV CLOUD_SDK_VERSION 332.0.0
+ENV HELM_VERSION 3.5.2
+ENV KUBECTL_VERSION 1.20.4
 ENV INSTALL_BASE /usr/local/bin
 
 ## Install Helm Client
@@ -61,9 +61,9 @@ RUN curl -LO https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-c
 
 ENV PATH "$PATH:/google-cloud-sdk/bin"
 RUN gcloud config set core/disable_usage_reporting true && \
-    gcloud config set component_manager/disable_update_check true
+  gcloud config set component_manager/disable_update_check true
 
-FROM golang:1.15.2-alpine3.12 as gopher
+FROM golang:1.16-alpine3.12 as golang
 
 # MAIN IMAGE
 # ==========
@@ -72,7 +72,7 @@ FROM tooling as builder
 
 ENV INSTALL_BASE /usr/local/bin
 
-COPY --from=gopher /usr/local/* /usr/local/
+COPY --from=golang /usr/local/* /usr/local/
 
 ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
