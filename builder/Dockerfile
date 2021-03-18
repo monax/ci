@@ -6,6 +6,7 @@ RUN apk add --update --no-cache \
   autoconf \
   automake \
   bash \
+  cargo \
   coreutils \
   curl \
   docker \
@@ -24,6 +25,7 @@ RUN apk add --update --no-cache \
   python3-dev \
   py3-crcmod \
   py3-pip \
+  rustup \
   tar \
   unzip \
   util-linux \
@@ -31,8 +33,9 @@ RUN apk add --update --no-cache \
   postgresql-client \
   rsync
 
+RUN pip3 install "pip>=20"
 RUN pip3 install pyyaml
-RUN pip install docker-compose
+RUN pip3 install docker-compose
 RUN npm install -g typescript
 
 FROM basics as tooling
