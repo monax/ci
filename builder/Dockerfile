@@ -37,7 +37,7 @@ RUN apk add --update --no-cache \
 RUN pip3 install docker-compose
 RUN yarn global add typescript
 
-FROM golang:1.16-alpine3.13 as golang
+FROM golang:1.18-alpine3.16 as golang
 
 # MAIN IMAGE
 # ==========
