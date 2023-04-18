@@ -1,4 +1,4 @@
-IMAGE_REPO=docker.pkg.github.com/monax/ci
+IMAGE_REPO=ghcr.io/monax/ci
 ### Versions for each image
 VERSION:=$(shell scripts/version.sh)
 
