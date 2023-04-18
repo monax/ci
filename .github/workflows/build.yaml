@@ -2,12 +2,18 @@ on:
   push:
     tags:
       - 'v*'
+    branches:
+      - prerelease
 
 jobs:
   builder-image:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+      - uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/checkout@v2
       - run: git fetch --prune --unshallow
       - run: make builder
